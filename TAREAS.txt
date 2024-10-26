@@ -1,0 +1,42 @@
+Para la asignación de las tareas lo hablamos por el grupo o bien se modifica el fichero y en la tarea que selecciones pones tu nombre y listo
+Estas son algunas tareas que se me han ido ocurriendo, si vemos que hay mas se añaden y listo.
+
+
+*****************TAREAS****************
+
+ - Para mi la primera tarea principal es crear una funcion que meta el objeto pokemon en el localStorage para poder ir trabajando con ello
+   así la persona encargada de crear las cards, podrá trabajar mejor con ello
+
++++ Página principal - index.html +++
+
+ - Lo primero de todo, crear el header, nav y footer con su formulario de busqueda y su boton agregar con enlace
+
+ - Creación de las cards
+
+ - Boton eliminar de las cards -> el pokemon a eliminar se hace desde el localStorage, recogiendo la informacion, "editandola" y subiendola de nuevo
+	-> En vez de eliminarlo del localStorage se le puede agregar la clase class="ocultar" para ello deberiamos de almacenar el id del pokemon que
+		vayamos a "eliminar" y a la hora de crear su carta, colocarle la clase ocultar.
+
+	a. ¿Después de eliminar el pokemon nos aparece un texto indicando que lo hemos eliminado correctamente?
+
+ - Búsqueda de pokemons -> a la espera del marte que nos explique los eventos para poder realizar esta tarea
+
++++ Pagina agregar - agregar.html +++
+
+ - Creación del formulario para agregar un nuevo pokemon
+
+ - Configuración del formulario -> bajar contenido de localStorage, "editarlo" para agregar al nuevo pokemon -> Dos posibles maneras que agregar el pokemon
+	-> Id predefinido, creamos la variable id empezando por el numero 152, ese numero se asigna al primer pokemon creado y su valor aumenta 
+	-> Obtener el ultimo valor de id (151 a no ser que ese sea eliminado) e incrementar 1 (opción un poco más compleja)
+
+		a. ¿Después de agregar al pokemon nos lleva al home (index.html)?
+		b. ¿Después de agregar el pokemon aparece un texto indicando que el pokemon se ha agregado correctamente?
+		c. ¿Si hay un error nos lo hara saber agregando un texto? - ¿Habrá errores?
+
+
++++ Parte final +++ -> podríamos dejarlo para el final, así una vez que tenemos todo creado, y que funciona perfectamente, lo dejamos bonito y si hay algún error
+			es más facil de identificarlo.
+
+ - Añadirle estilos a la página
+
+
