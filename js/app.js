@@ -1,2 +1,3 @@
 let pokemons= pokemon;
-let añadir= localStorage.setItem("pokemons", JSON.stringify(pokemons));
+let añadir= window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
+//JSON.parse (window.localStorage.getItem("pokemons"));
