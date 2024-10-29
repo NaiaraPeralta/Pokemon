@@ -5,7 +5,8 @@ let añadir= window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
 
 
 // INDEX
-
+let header = document.getElementsByTagName('header');
+let nav = document.getElementsByTagName('nav');
 
 
 
