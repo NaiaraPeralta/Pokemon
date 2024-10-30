@@ -1,0 +1,39 @@
+header{
+    background-color: #e2e2e2;
+    height: 100px;
+    width: 100%;
+}
+header div {
+    text-align: center;
+    padding-top: 10px;;
+}
+nav {
+    height: 50px;
+    width: 100%;
+    background-color: blue;
+}
+
+.formularioNavegador{
+    float: right;
+    padding-top: 15px;
+    padding-right: 20px;;
+}
+.formularioNavegador input{
+    border-radius: 5px;;
+}
+
+.divRedireccion{
+    float: right;
+    padding-right: 20px;
+    margin-right: 10px;;
+}
+.divRedireccion p {
+    margin-left: 15px;;
+}
+.divRedireccion a {
+    text-decoration: none;
+    color: black;
+}
+.divRedireccion:hover{
+    background-color: #4b77f7;
+}
