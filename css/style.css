@@ -37,3 +37,28 @@ nav {
 .divRedireccion:hover{
     background-color: #4b77f7;
 }
+
+footer{
+    background-color: #18237b;
+    width:100%;
+    height: 250px;
+}
+.divFooter p {
+    color: #888dbe ;
+}
+
+.divFooter{
+    margin-right: 20px;
+}
+.divFooter :first-child {
+    padding-top: 20px;
+    text-align: center;
+}
+.divFooter :last-child {
+    float: right;
+}
+.divFooter hr{
+    margin: center;
+    width: 95%;
+    border: 1px solid #131b5d;
+}
