@@ -83,7 +83,67 @@ footer[0].appendChild(footerDiv);
 
 
 // CARDS
+// Seleccionamos el main y creamos el contenedor principal para el pokedex
+let main = document.querySelector('main');
+let pokedex = document.createElement('div');
+pokedex.id='pokedex';
+pokedex.classList.add('contenedor');
+main.appendChild(pokedex);
 
+/**
+ * Función para crear la carta de un Pokémon
+ * @param {Object} pokemon 
+ */
+function crearCarta(pokemon) {
+    //Aqui crearemos la carta
+    let card = document.createElement('div');
+    card.classList.add('divCarta');
+
+    card.setAttribute('id',`pokemon${pokemon['id']}`);
+
+    //Creamos el ID
+    let id = document.createElement('p');
+    id.textContent = `ID: ${pokemon['id']}`;
+    card.appendChild(id);
+
+    //Creamos la imagen y seleccionamos que imagen queremos que nos ponga añadiendo la ruta
+    let imagen = document.createElement('img');
+    imagen.src= `img/${pokemon['id']}.png`;
+    imagen.classList.add('imagen');
+    card.appendChild(imagen);
+
+    //Creamos el nombre del pokemon y lo añadimos al div
+    let nomPokemon = document.createElement('p');
+    nomPokemon.textContent = `Nombre: ${pokemon['nombre']}`;
+    card.appendChild(nomPokemon);
+
+    //Creamos el tipo de pokemon y lo añadimos dentro del div
+    let tipoPokemon = document.createElement('p');
+    tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+    card.appendChild(tipoPokemon);
+
+    //Creamos el boton que borrara a los pokemons que queramos
+    let borrar = document.createElement('button');
+    borrar.textContent = 'Eliminar';
+    borrar.classList.add('buttonBorrar');
+    card.appendChild(borrar);
+
+    return card;
+}
+
+/**
+ * Funcion para mostrar los pokemons
+ */
+function mostrarCarta() {
+    pokedex.innerHTML = '';
+    pokemons.forEach(i => {
+    let card = crearCarta(i);
+    pokedex.appendChild(card);
+  });
+}
+
+// Llamar a la función para renderizar la Pokédex al cargar la página
+mostrarCarta();
 
 
 

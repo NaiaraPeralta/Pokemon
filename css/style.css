@@ -62,3 +62,34 @@ footer{
     width: 95%;
     border: 1px solid #131b5d;
 }
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.divCarta{
+    border: 1px solid;
+    border-color: black;
+    border-radius: 10px;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    padding: 40px;
+    position: relative;
+    flex-direction: column;
+    margin:10px;
+    background-color: #c8d2f2;
+    align-items: center;
+}
+.imagen{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+.buttonBorrar{
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
