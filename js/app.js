@@ -97,93 +97,59 @@ footer[0].appendChild(footerDiv);
 
 
 // CARDS
-let main = document.getElementsByTagName('main');
-//Crear divs para cada tarjeta
-
-let divCards = document.createElement('div');
-
-for(let i of pokemonLocal){
-    let divPoke = document.createElement('div');
-    let tablePoke = document.createElement('table');
-    let imgPoke = document.createElement('img');
-
-    //Esto solo almacena el id y el nombre
-    let thead = tablePoke.createTHead();
-    let filaThead = thead.insertRow();
-    let celdaId = filaThead.insertCell();
-    let celdaNombre = filaThead.insertCell();
-    celdaId.textContent = "ID: " + i['id'];
-    celdaNombre.textContent = "Nombre: " +  i['nombre'];
-
-    //Esto solo almacena la imagen
-    let tbody = tablePoke.createTBody();
-    let filaImg = tbody.insertRow();
-    let celdaImg = filaImg.insertCell();
-    celdaImg.colSpan = 2;
-    imgPoke.src = "img/" + i['id'] + ".png";
-    imgPoke.alt = i['nombre'];
-    celdaImg.appendChild(imgPoke);
-
-    //Esto solo almacena los datos del pokemon
-    let filaTipo = tbody.insertRow();
-    let celdaTipo = filaTipo.insertCell();
-    celdaTipo.textContent = "Tipo: ";
-    let celdaTipo1 = filaTipo.insertCell();
-    
-    if(i['tipos'].length > 1){
-        celdaTipo1.textContent = i['tipos'][0] + ", "  + i['tipos'][1] ;
-    } else {
-        celdaTipo1.textContent = i['tipos'][0];
-    }
-
-    let filaSalud = tbody.insertRow();
-    let celdaSalud = filaSalud.insertCell();
-    let celdaSalud2 = filaSalud.insertCell();
-    celdaSalud.textContent = "HP";
-    celdaSalud2.textContent =  i['estadisticas_base']['hp'];
-
-    let filaAtaque = tbody.insertRow();
-    let celdaAtaque = filaAtaque.insertCell();
-    let celdaAtaque2 = filaAtaque.insertCell();
-    celdaAtaque.textContent = "Ataque";
-    celdaAtaque2.textContent = i['estadisticas_base']['ataque'];
-
-    let filaDefensa = tbody.insertRow();
-    let celdaDefensa = filaDefensa.insertCell();
-    let celdaDefensa2 = filaDefensa.insertCell();
-    celdaDefensa.textContent = "Defensa";
-    celdaDefensa2.textContent =  i['estadisticas_base']['defensa'];
-
-    let filaVelocidad = tbody.insertRow();
-    let celdaVelocidad = filaVelocidad.insertCell();
-    let celdaVelocidad2 = filaVelocidad.insertCell();
-    celdaVelocidad.textContent = "Velocidad";
-    celdaVelocidad2.textContent =  i['estadisticas_base']['velocidad'];
-
-    //Esto es para crear el boton eliminar
-    let botonEliminar = document.createElement('img');
-    let aEliminar = document.createElement('a');
-    botonEliminar.src= "img/basura.png";
-    botonEliminar.alt = "Eliminar Pokemon";
-    botonEliminar.setAttribute('data-id', parseInt(i['id']));
-
-    botonEliminar.addEventListener('click', function(){
-        let idPokemon = botonEliminar.getAttribute('data-id');
-        eliminarPokemon(idPokemon);
-        divCards.removeChild(divPoke);
-    })
-    botonEliminar.appendChild(aEliminar);
-    
-
-
-    //Esto mete todas las tarjetas dentro del div de cards
-    divPoke.appendChild(tablePoke);
-    divPoke.classList.add('cards-pokemon');
-    divPoke.appendChild(botonEliminar);
-    divCards.appendChild(divPoke);
+// Seleccionamos el main y creamos el contenedor principal para el pokedex
+let main = document.querySelector('main');
+let pokedex = document.createElement('div');
+pokedex.id='pokedex';
+pokedex.classList.add('contenedor');
+main.appendChild(pokedex);
+/**
+ * Función para crear la carta de un Pokémon
+ * @param {Object} pokemon 
+ */
+function crearCarta(pokemon) {
+    //Aqui crearemos la carta
+    let card = document.createElement('div');
+    card.classList.add('divCarta');
+    card.setAttribute('id',`pokemon${pokemon['id']}`);
+    //Creamos el ID
+    let id = document.createElement('p');
+    id.textContent = `ID: ${pokemon['id']}`;
+    card.appendChild(id);
+    //Creamos la imagen y seleccionamos que imagen queremos que nos ponga añadiendo la ruta
+    let imagen = document.createElement('img');
+    imagen.src= `img/${pokemon['id']}.png`;
+    imagen.classList.add('imagen');
+    card.appendChild(imagen);
+    //Creamos el nombre del pokemon y lo añadimos al div
+    let nomPokemon = document.createElement('p');
+    nomPokemon.textContent = `Nombre: ${pokemon['nombre']}`;
+    card.appendChild(nomPokemon);
+    //Creamos el tipo de pokemon y lo añadimos dentro del div
+    let tipoPokemon = document.createElement('p');
+    tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+    card.appendChild(tipoPokemon);
+    //Creamos el boton que borrara a los pokemons que queramos
+    let borrar = document.createElement('button');
+    borrar.textContent = 'Eliminar';
+    borrar.classList.add('buttonBorrar');
+    card.appendChild(borrar);
+    return card;
 }
-divCards.classList.add('divCard');
-main[0].appendChild(divCards);
+
+/**
+ * Funcion para mostrar los pokemons
+ */
+function mostrarCarta() {
+    pokedex.innerHTML = '';
+    pokemons.forEach(i => {
+    let card = crearCarta(i);
+    pokedex.appendChild(card);
+  });
+}
+
+// Llamar a la función para renderizar la Pokédex al cargar la página
+mostrarCarta();
 
 
 //Funcion eliminar pokemon
