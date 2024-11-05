@@ -36,7 +36,7 @@ inputForm.id = "buscarPokemon";
 inputForm.placeholder = "Encuentra tu pokemon";
 
 inputForm.addEventListener('keyup', function(){
-    let texto = inputForm.value;
+    let texto = inputForm.value.toLowerCase();
     let cards = document.getElementsByClassName('divCarta');
 
     for(let i = 0 ; i < cards.length ; i++){
