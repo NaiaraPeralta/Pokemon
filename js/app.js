@@ -134,10 +134,23 @@ function crearCarta(pokemon) {
     tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
     card.appendChild(tipoPokemon);
     //Creamos el boton que borrara a los pokemons que queramos
+    /*
     let borrar = document.createElement('button');
     borrar.textContent = 'Eliminar';
     borrar.classList.add('buttonBorrar');
     card.appendChild(borrar);
+    */
+    let borrar = document.createElement('a');
+    let imgBorrar= document.createElement('img');
+    imgBorrar.src= 'img/basura.png';
+    borrar.appendChild(imgBorrar);
+    borrar.addEventListener('click', function(){
+        eliminarPokemon(parseInt(pokemon['id']));
+        card.classList.add('ocularTarjeta');
+    });
+    borrar.classList.add('basura');
+    card.appendChild(borrar);
+
     return card;
 }
 
@@ -151,15 +164,10 @@ function mostrarCarta() {
         let card = crearCarta(pokemonLocalStorage[i]);
         pokedex.appendChild(card);
     }
-//     pokemonLocalStorage.forEach(i => {
-//     let card = crearCarta(i);
-//     pokedex.appendChild(card);
-//     });
 }
 
 // Llamar a la función para renderizar la Pokédex al cargar la página
 mostrarCarta();
-
 
 //Funcion eliminar pokemon
 function eliminarPokemon(id){
