@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //especifico que el input es de tipo texto
     inputNb.type = "text";
     inputNb.id = "nombre";
+    inputNb.name = "nombre";
     //para ponerlo como campo obligatorio a rellenar 
     inputNb.required = true;
     //Agrega un nuevo nodo como último hijo de un elemento.(explicacion profe), 
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let inputEB = document.createElement("input");
       inputEB.type = "number";
       inputEB.id = estadisticasBase[i];
+      inputEB.name = estadisticasBase[i];
       inputEB.required = true;
       labelEB.appendChild(inputEB);
       form.appendChild(labelEB);
@@ -54,6 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     form.appendChild(document.createElement("br"));
+
+    
 
     let inputboton = document.createElement("input");
     inputboton.type = "submit";
@@ -77,6 +81,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+let datosUrl = window.location.search;
+let datos1 = datosUrl.split('&');
+let arrDatos = [];
+for(let i = 0 ; i < datos1.length ; i++){
+    arrDatos.push(datos1[i].split('='));
+}
+let datosDefin = [];
+for(let i in arrDatos){
+    datosDefin.push(arrDatos[i][1]);
+}
+let nombre = datosDefin[0];
+let hp = datosDefin[1];
+let ataque = datosDefin[2];
+let defensa = datosDefin[3];
+let atEsp = datosDefin[4];
+let defEsp = datosDefin[5];
+let vel = datosDefin[6];
 
 
 
