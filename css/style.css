@@ -121,3 +121,7 @@ footer{
     margin: auto;
     padding: 20px;
 }
+
+.ocularTarjeta{
+    display: none;
+}

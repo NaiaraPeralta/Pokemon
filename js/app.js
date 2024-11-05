@@ -37,14 +37,18 @@ inputForm.placeholder = "Encuentra tu pokemon";
 
 inputForm.addEventListener('keyup', function(){
     let texto = inputForm.value;
-    let cards = document.getElementsByClassName('cards-pokemon');
+    let cards = document.getElementsByClassName('divCarta');
 
     for(let i = 0 ; i < cards.length ; i++){
-        let cartaPokeNombre = cards[i].querySelector('thead tr td:nth-child(2)').textContent.toLowerCase();
-        if(cartaPokeNombre.indexOf(texto) !== -1){
-            cards[i].classList.remove('ocultarTarjeta');
+        let pPoke = cards[i].getElementsByTagName('p');
+        let nombrePokemon = pPoke[1].textContent.toLowerCase();
+        nombrePokemon = nombrePokemon.split(': ');
+        console.log(nombrePokemon[1]);
+        //let cartaPokeNombre = cards[i].querySelector('p:nth-child(2)').textContent.toLowerCase();
+        if(nombrePokemon[1].indexOf(texto) !== -1){
+            cards[i].classList.remove('ocularTarjeta');
         } else {
-            cards[i].classList.add('ocultarTarjeta');
+            cards[i].classList.add('ocularTarjeta');
         }
 
     }
@@ -142,10 +146,15 @@ function crearCarta(pokemon) {
  */
 function mostrarCarta() {
     pokedex.innerHTML = '';
-    pokemons.forEach(i => {
-    let card = crearCarta(i);
-    pokedex.appendChild(card);
-  });
+    let pokemonLocalStorage = JSON.parse(localStorage.getItem('pokemons'));
+    for(let i in pokemonLocalStorage){
+        let card = crearCarta(pokemonLocalStorage[i]);
+        pokedex.appendChild(card);
+    }
+//     pokemonLocalStorage.forEach(i => {
+//     let card = crearCarta(i);
+//     pokedex.appendChild(card);
+//     });
 }
 
 // Llamar a la función para renderizar la Pokédex al cargar la página
