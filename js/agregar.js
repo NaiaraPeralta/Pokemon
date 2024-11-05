@@ -1,19 +1,22 @@
 //El DOMContentLoaded ocurre cuando el documento ha sido completamente cargado, es decir para cuando se ha terminado
 //de ejecutar todo el codigo.
 document.addEventListener("DOMContentLoaded", () => {
+    let main = document.getElementsByTagName('main');
+    //Div del formulario
+    let divFormAgregar = document.createElement('div');
+    // Crear la etiqueta de H2 
+    let title = document.createElement("h2");
+    title.textContent = "Agregar un nuevo Pokémon";
+    divFormAgregar.appendChild(title);
     //  Formulario
     //creo la etiqueta form
-    let form = document.createElement("form");
+    let forms = document.getElementsByTagName('form');
+    let form = forms[0];
     //le asigno un id al formulario para que si luego necesitamos llamarlo para cualquier otra fucnion podamos llamarlo
     //por el id
     form.id = "formularioPokemon";
     form.method = "get";
   
-    // Crear la etiqueta de H2 
-    let title = document.createElement("h2");
-    title.textContent = "Agregar un nuevo Pokémon";
-    //Añado el encabezado <h2> al formulario
-    form.appendChild(title);
   
     // Creo el label para el nombre
     let labelNb = document.createElement("label");
@@ -35,20 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
   
     let estadisticasBase = ["HP", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"];
     //recorro el array y creo q el label y el imput para las estadisticas base
-    estadisticasBase.forEach(estadisticasBase => {
+    for(let i in estadisticasBase) {
       let labelEB = document.createElement("label");
       //aqui utilizo las comillas invertidas para q lo de hp , ataque ... se me muestre como texto 
       //porque si lo pongo con comillas " " se pone como cadena de texto literal y no funciona 
-      labelEB.textContent = `${estadisticasBase}:`;
+      labelEB.textContent = estadisticasBase[i] + ": ";
       let inputEB = document.createElement("input");
       inputEB.type = "number";
-      inputEB.id = estadisticasBase;
+      inputEB.id = estadisticasBase[i];
       inputEB.required = true;
       labelEB.appendChild(inputEB);
       form.appendChild(labelEB);
       form.appendChild(document.createElement("br"));
       form.appendChild(document.createElement("br"));
-    });
+    }
   
     form.appendChild(document.createElement("br"));
 
@@ -57,6 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
     inputboton.id = "agregar";
     inputboton.value = "Agregar Pokémon";
     form.appendChild(inputboton);
+
+    divFormAgregar.appendChild(form);
+    divFormAgregar.classList.add("divFormularioAgregar");
+    main[0].appendChild(divFormAgregar);
+    main[0].appendChild(forms);
    
 /** 
     // Creo el boton de agregar 
@@ -68,6 +76,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
-  
+
+
+
+
+// *********************  Header  **********************
+let header = document.getElementsByTagName('header');
+let nav = document.getElementsByTagName('nav');
+
+// Por cada etiqueta crearé divs
+
+let divHeader = document.createElement('div');
+let h1Header = document.createElement('h1');
+h1Header.textContent = "Agregar un nuevo pokemon";
+
+divHeader.appendChild(h1Header);
+header[0].appendChild(divHeader);
+
+// ***************  Nav  *****************************
+
+
+//Ahora haremos otro div para crear la redireccion a agregar.html
+// *******************  Nav - agregar.html  *******************
+let divRedirect = document.createElement('div');
+let pRedirect = document.createElement('p');
+let aRedirect = document.createElement('a');
+
+aRedirect.setAttribute('href', "../index.html");
+aRedirect.textContent = "Volver a la pokedex";
+
+divRedirect.classList.add("divRedireccionIndex");
+
+pRedirect.appendChild(aRedirect);
+divRedirect.appendChild(pRedirect);
+nav[0].appendChild(divRedirect);
+
+// **************  Main  ****************
+//El main por el momento tiene poco trabajo, hasta que tengamos las cards
+
+// *************  Footer  ****************
+//Primero un footer sencillo
+let footer = document.getElementsByTagName('footer');
+    // En el footer crearemos un pequeño div, para tenerlo todo mas organizado
+let footerDiv = document.createElement('div');
+    // Agregamos unos pocos comentarios para que el footer sea mas "bonito"
+let pComentariosFooterDiv = document.createElement('p');
+pComentariosFooterDiv.textContent = "Proyecto DOM 3 - Pokedex";
+let hrFooter = document.createElement('hr');
+    // Le agregaremos un pequeño texto diciendo quienes han sido los autores de este proyecto
+let pAutoresFooterDiv = document.createElement('p');
+pAutoresFooterDiv.textContent = "Proyecto creado por: Naiara Peralta Acevedo, Laura García Yuste, Francisco Garcia Gomez.";
+
+footerDiv.classList.add('divFooter');
+footerDiv.appendChild(pComentariosFooterDiv);
+footerDiv.appendChild(hrFooter);
+footerDiv.appendChild(pAutoresFooterDiv);
+footer[0].appendChild(footerDiv);
+
+
 
   

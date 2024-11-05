@@ -11,6 +11,7 @@ nav {
     height: 50px;
     width: 100%;
     background-color: blue;
+    margin-bottom: 20px;
 }
 
 .formularioNavegador{
@@ -35,6 +36,23 @@ nav {
     color: black;
 }
 .divRedireccion:hover{
+    background-color: #4b77f7;
+}
+
+.divRedireccionIndex{
+    float: left;
+    padding-right: 20px;
+    margin-right: 10px;;
+}
+.divRedireccionIndex p {
+    margin-left: 15px;
+    
+}
+.divRedireccionIndex a {
+    text-decoration: none;
+    color: white;
+}
+.divRedireccionIndex:hover{
     background-color: #4b77f7;
 }
 
@@ -92,4 +110,14 @@ footer{
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+
+.divFormularioAgregar{
+    border: solid 1px black;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgb(46, 46, 46);
+    width: 400px;
+    margin: auto;
+    padding: 20px;
 }
