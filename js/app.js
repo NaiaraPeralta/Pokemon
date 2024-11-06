@@ -1,6 +1,13 @@
 let pokemons = pokemon;
-let añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
-let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
+let añadir='';
+let pokemonLocal='';
+if(!JSON.parse(window.localStorage.getItem("pokemons"))){
+    añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
+}else{
+    pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
+}
+
+
 
 
 
@@ -134,12 +141,7 @@ function crearCarta(pokemon) {
     tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
     card.appendChild(tipoPokemon);
     //Creamos el boton que borrara a los pokemons que queramos
-    /*
-    let borrar = document.createElement('button');
-    borrar.textContent = 'Eliminar';
-    borrar.classList.add('buttonBorrar');
-    card.appendChild(borrar);
-    */
+    
     let borrar = document.createElement('a');
     let imgBorrar= document.createElement('img');
     imgBorrar.src= 'img/basura.png';
