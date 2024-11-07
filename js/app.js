@@ -126,13 +126,25 @@ function crearCarta(pokemon) {
 
     //Creamos el boton para ver el pokemon
     let divVer = document.createElement('div');
-    let aVer = document.createElement('a');
+    divVer.classList = 'divVer';
+    let formVer = document.createElement('form');
+    formVer.action = 'pages/verPokemon.html';
+    formVer.method = 'GET';
+
+    let hiddenId = document.createElement('input');
+    hiddenId.type = "hidden";
+    hiddenId.name = 'id';
+    hiddenId.value = pokemon['id'];
+    formVer.appendChild(hiddenId);
+
+    let submitVer = document.createElement('button');
+    submitVer.type = "submit";
     let imgVer = document.createElement('img');
-    imgVer.src = 'img/ver.png';
-    divVer.classList.add('divVer');
-    aVer.href = 'pages/verPokemon.html';
-    aVer.appendChild(imgVer);
-    divVer.appendChild(aVer);
+    imgVer.src = "img/ver.png";
+    submitVer.appendChild(imgVer);
+    formVer.appendChild(submitVer);
+
+    divVer.appendChild(formVer);
     card.appendChild(divVer);
 
     //Creamos el ID
