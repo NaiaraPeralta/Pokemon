@@ -143,12 +143,109 @@ function crearTarjetaPokemon(pokemon){
     celdaDatosV1.appendChild(textoV);
     //Insertamos tabla dentro de un div
     divTarjeta.appendChild(tablaTarjeta);
-    
-    
 }
 
 crearTarjetaPokemon(comprobarPokemon(idPokemon));
 
 main[0].appendChild(divTarjeta);
+
+//lista debil y fuerte
+let divEspecificaciones = document.createElement('div');
+/**
+ * La funcion solo crea una lista con los tipos de pokemon en los que el propio pokemon es furte o debil contra esos tipos
+ * @param {Object} pokemon 
+ */
+function listaDebilFuerte(pokemon){
+    // -------- Debil ---------
+    let h2debil = document.createElement('h2');
+    h2debil.textContent = "Debil Contra:"
+    let listaDebil = document.createElement('ul');
+    let debilidades = pokemon['debil_contra'];
+    for(let i of debilidades){
+        let liDebil = document.createElement('li');
+        liDebil.textContent = i;
+        listaDebil.appendChild(liDebil);
+    }
+    divEspecificaciones.appendChild(h2debil);
+    divEspecificaciones.appendChild(listaDebil);
+
+    // ---------- Fuerte ---------
+    let h2fuerte = document.createElement('h2');
+    h2fuerte.textContent = "Fuerte Contra:"
+    let listaFuerte = document.createElement('ul');
+    let fuerte = pokemon['fuerza_contra'];
+    for(let i of fuerte){
+        let liFuerte = document.createElement('li');
+        liFuerte.textContent = i;
+        listaFuerte.appendChild(liFuerte);
+    }
+    divEspecificaciones.appendChild(h2fuerte);
+    divEspecificaciones.appendChild(listaFuerte);
+
+}
+divEspecificaciones.classList.add('listaDatosPokemon');
+
+/**
+ * Muestra una lista con las habilidades del pokemon
+ * @param {Object} pokemon 
+ */
+function listaHabilidades(pokemon){
+    let h2 = document.createElement('h2');
+    h2.textContent = "Habilidades:";
+
+    let listaHabilidades = document.createElement('ul');
+    let habilidades = pokemon['habilidades'];
+    for(let i of habilidades){
+        let li = document.createElement('li');
+        li.innerHTML ="<strong>" +  i['nombre'] + "</strong>";
+        let ulLi = document.createElement('ul');
+        let liUl = document.createElement('li');
+        liUl.textContent = i['descripcion'];
+        ulLi.appendChild(liUl);
+        li.appendChild(ulLi);
+        listaHabilidades.appendChild(li);
+    }
+    divEspecificaciones.appendChild(h2);
+    divEspecificaciones.appendChild(listaHabilidades);
+}
+
+/**
+ * Muestra una lista con los moviminetos del pokemon
+ * @param {Object} pokemon 
+ */
+function listaMovimientos(pokemon){
+    let h2 = document.createElement('h2');
+    h2.textContent = "Movimientos:";
+
+    let listaMovimientos = document.createElement('ul');
+    let movimientos = pokemon['movimientos'];
+    for(let i of movimientos){
+        let li = document.createElement('li');
+        li.innerHTML = "<strong>" +  i['nombre'] + "</strong>";
+        let ulLi = document.createElement('ul');
+        let li1 = document.createElement('li');
+        let li2 = document.createElement('li');
+        let li3 = document.createElement('li');
+        let li4 = document.createElement('li');
+        li1.textContent = "Tipo: " + i['tipo']; 
+        li2.textContent = "Potencia: " + i['potencia'];
+        li3.textContent = "Precision: " + i['precision'];
+        li4.textContent = "Categoria: " + i['categoria'];
+
+        ulLi.appendChild(li1)
+        ulLi.appendChild(li2)
+        ulLi.appendChild(li3)
+        ulLi.appendChild(li4)
+        li.appendChild(ulLi);
+        listaMovimientos.appendChild(li);
+    }
+    divEspecificaciones.appendChild(h2);
+    divEspecificaciones.appendChild(listaMovimientos);
+}
+
+listaDebilFuerte(comprobarPokemon(idPokemon));
+listaHabilidades(comprobarPokemon(idPokemon));
+listaMovimientos(comprobarPokemon(idPokemon));
+main[0].appendChild(divEspecificaciones);
 
 

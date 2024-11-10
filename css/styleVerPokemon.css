@@ -1,0 +1,29 @@
+body{
+    background: linear-gradient(to left, #00ff15, #7e3d78);
+}
+.tarjetaPokemon{
+    float: left;
+    font-size: 50px;
+    box-shadow: 10px;
+}
+.tarjetaPokemon img{
+    margin: auto;
+    width:210px;
+    height: 200px;
+    image-rendering: pixelated;
+}
+.tarjetaPokemon table{
+    margin: auto;
+    border:solid 1px black;
+    
+}
+
+.listaDatosPokemon{
+    float:right;
+    width:50%;
+    font-size: 20px;
+    
+}
+.listaDatosPokemon ul{
+    list-style: none;
+}
