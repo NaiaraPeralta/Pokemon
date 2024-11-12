@@ -1,13 +1,19 @@
 let pokemons = pokemon;
 let añadir='';
 let pokemonLocal='';
+let pokemonsAgregado= [];
 if(!JSON.parse(window.localStorage.getItem("pokemons"))){
     añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
 }else{
     pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
 }
 
-
+if(!JSON.parse(window.localStorage.getItem("pokemonsAgregado"))){
+    añadirPokemon = window.localStorage.setItem("pokemonsAgregado", JSON.stringify(pokemonsAgregado));    
+}else{
+    pokemonsAgregado = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
+    console.log(pokemonsAgregado);
+}
 
 
 
@@ -192,6 +198,13 @@ function mostrarCarta() {
     let pokemonLocalStorage = JSON.parse(localStorage.getItem('pokemons'));
     for(let i in pokemonLocalStorage){
         let card = crearCarta(pokemonLocalStorage[i]);
+        pokedex.appendChild(card);
+    }
+
+    let pokemonAgregado = JSON.parse(localStorage.getItem('pokemonsAgregado'));
+
+    for(let i in pokemonAgregado){
+        let card = crearCarta(pokemonAgregado[i]);
         pokedex.appendChild(card);
     }
 }
