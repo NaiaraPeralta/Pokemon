@@ -117,6 +117,7 @@ function agregarPokemon(nombre,hp,ataque,defensa,ataqueEspecial,defensaEspecial,
   let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
   id = pokemon.length+1;
   id++;
+ 
   //creo un nuevoPokemon con los datos que meto en el formulario 
   let nuevoPokemon = {
     id : id,
