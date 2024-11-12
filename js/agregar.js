@@ -109,8 +109,9 @@ console.log(velocidad);
 
 function agregarPokemon(nombre,hp,ataque,defensa,ataqueEspecial,defensaEspecial,velocidad) {
   let id;
-  let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
-  id = pokemonLocal.length+1;
+  let pokemon = JSON.parse(window.localStorage.getItem("pokemons"));
+  let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
+  id = pokemon.length+1;
   id++;
   //creo un nuevoPokemon con los datos que meto en el formulario 
   let nuevoPokemon = {
@@ -128,7 +129,7 @@ function agregarPokemon(nombre,hp,ataque,defensa,ataqueEspecial,defensaEspecial,
 // agregar pokemon
 
 pokemonLocal.push(nuevoPokemon); 
-window.localStorage.setItem('pokemons',JSON.stringify(pokemonLocal));
+window.localStorage.setItem('pokemonsAgregado',JSON.stringify(pokemonLocal));
 }
 
 if(nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad){
