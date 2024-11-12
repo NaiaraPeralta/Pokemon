@@ -1,10 +1,17 @@
 let pokemons = pokemon;
 let añadir='';
 let pokemonLocal='';
+let pokemonsAgregado= [];
 if(!JSON.parse(window.localStorage.getItem("pokemons"))){
-    añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));    
 }else{
     pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
+}
+
+if(!JSON.parse(window.localStorage.getItem("pokemonsAgregado"))){
+    añadirPokemon = window.localStorage.setItem("pokemonsAgregado", JSON.stringify(pokemonsAgregado));    
+}else{
+    pokemonsAgregado = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
 }
 
 
@@ -153,16 +160,23 @@ function crearCarta(pokemon) {
     card.appendChild(id);
     //Creamos la imagen y seleccionamos que imagen queremos que nos ponga añadiendo la ruta
     let imagen = document.createElement('img');
+    
     imagen.src= `img/${pokemon['id']}.png`;
-    imagen.classList.add('imagen');
-    card.appendChild(imagen);
+    if( imagen.src= `img/${pokemon['id']}.png`){
+        imagen.classList.add('imagen');
+        card.appendChild(imagen);
+    }
+   
     //Creamos el nombre del pokemon y lo añadimos al div
     let nomPokemon = document.createElement('p');
     nomPokemon.textContent = `Nombre: ${pokemon['nombre']}`;
     card.appendChild(nomPokemon);
     //Creamos el tipo de pokemon y lo añadimos dentro del div
     let tipoPokemon = document.createElement('p');
-    tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+    if(pokemon['tipos']){
+        tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+    }
+   
     card.appendChild(tipoPokemon);
     //Creamos el boton que borrara a los pokemons que queramos
     

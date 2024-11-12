@@ -63,12 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
     inputboton.type = "submit";
     inputboton.id = "agregar";
     inputboton.value = "Agregar Pokémon";
+
     form.appendChild(inputboton);
 
     divFormAgregar.appendChild(form);
     divFormAgregar.classList.add("divFormularioAgregar");
     main[0].appendChild(divFormAgregar);
-    main[0].appendChild(forms);
    
 /** 
     // Creo el boton de agregar 
@@ -95,11 +95,45 @@ let nombre = datosDefin[0];
 let hp = datosDefin[1];
 let ataque = datosDefin[2];
 let defensa = datosDefin[3];
-let atEsp = datosDefin[4];
-let defEsp = datosDefin[5];
-let vel = datosDefin[6];
+let ataqueEspecial = datosDefin[4];
+let defensaEspecial = datosDefin[5];
+let velocidad = datosDefin[6];
 
+console.log(nombre);
+console.log(hp);
+console.log(ataque);
+console.log(defensa);
+console.log(ataqueEspecial);
+console.log(defensaEspecial);
+console.log(velocidad);
 
+function agregarPokemon(nombre,hp,ataque,defensa,ataqueEspecial,defensaEspecial,velocidad) {
+  let id;
+  let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
+  id = pokemonLocal.length+1;
+  id++;
+  //creo un nuevoPokemon con los datos que meto en el formulario 
+  let nuevoPokemon = {
+    id : id,
+    nombre: nombre,
+    estadisticas_base: {
+      hp: hp,
+      ataque:ataque,
+      defensa: defensa,
+      ataque_especial: ataqueEspecial,
+      defensa_especial: defensaEspecial,
+      velocidad: velocidad
+    }
+  }
+// agregar pokemon
+
+pokemonLocal.push(nuevoPokemon); 
+window.localStorage.setItem('pokemons',JSON.stringify(pokemonLocal));
+}
+
+if(nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad){
+  agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
+}
 
 // *********************  Header  **********************
 let header = document.getElementsByTagName('header');
