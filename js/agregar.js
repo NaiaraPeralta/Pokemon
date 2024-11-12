@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Crear la etiqueta de H2 
     let title = document.createElement("h2");
     title.textContent = "Agregar un nuevo Pokémon";
+    title.classList.add('h2StyleAgregar');
     divFormAgregar.appendChild(title);
     //  Formulario
     //creo la etiqueta form
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Creo el label para el nombre
     let labelNb = document.createElement("label");
     labelNb.textContent = "Nombre: ";
+    labelNb.classList.add('datos');
     //creo el input para el nombre
     let inputNb = document.createElement("input");
     //especifico que el input es de tipo texto
@@ -38,9 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     form.appendChild(document.createElement("br"));
   
     let estadisticasBase = ["HP", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"];
+
     //recorro el array y creo q el label y el imput para las estadisticas base
     for(let i in estadisticasBase) {
       let labelEB = document.createElement("label");
+      labelEB.classList.add('datos');
       //aqui utilizo las comillas invertidas para q lo de hp , ataque ... se me muestre como texto 
       //porque si lo pongo con comillas " " se pone como cadena de texto literal y no funciona 
       labelEB.textContent = estadisticasBase[i] + ": ";
@@ -63,12 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
     inputboton.type = "submit";
     inputboton.id = "agregar";
     inputboton.value = "Agregar Pokémon";
-
     form.appendChild(inputboton);
 
     divFormAgregar.appendChild(form);
     divFormAgregar.classList.add("divFormularioAgregar");
     main[0].appendChild(divFormAgregar);
+    main[0].appendChild(forms);
    
 /** 
     // Creo el boton de agregar 
@@ -95,46 +99,11 @@ let nombre = datosDefin[0];
 let hp = datosDefin[1];
 let ataque = datosDefin[2];
 let defensa = datosDefin[3];
-let ataqueEspecial = datosDefin[4];
-let defensaEspecial = datosDefin[5];
-let velocidad = datosDefin[6];
+let atEsp = datosDefin[4];
+let defEsp = datosDefin[5];
+let vel = datosDefin[6];
 
-console.log(nombre);
-console.log(hp);
-console.log(ataque);
-console.log(defensa);
-console.log(ataqueEspecial);
-console.log(defensaEspecial);
-console.log(velocidad);
 
-function agregarPokemon(nombre,hp,ataque,defensa,ataqueEspecial,defensaEspecial,velocidad) {
-  let id;
-  let pokemon = JSON.parse(window.localStorage.getItem("pokemons"));
-  let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
-  id = pokemon.length+1;
-  id++;
-  //creo un nuevoPokemon con los datos que meto en el formulario 
-  let nuevoPokemon = {
-    id : id,
-    nombre: nombre,
-    estadisticas_base: {
-      hp: hp,
-      ataque:ataque,
-      defensa: defensa,
-      ataque_especial: ataqueEspecial,
-      defensa_especial: defensaEspecial,
-      velocidad: velocidad
-    }
-  }
-// agregar pokemon
-
-pokemonLocal.push(nuevoPokemon); 
-window.localStorage.setItem('pokemonsAgregado',JSON.stringify(pokemonLocal));
-}
-
-if(nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad){
-  agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
-}
 
 // *********************  Header  **********************
 let header = document.getElementsByTagName('header');
@@ -145,6 +114,7 @@ let nav = document.getElementsByTagName('nav');
 let divHeader = document.createElement('div');
 let h1Header = document.createElement('h1');
 h1Header.textContent = "Agregar un nuevo pokemon";
+h1Header.classList.add('h1Style');
 
 divHeader.appendChild(h1Header);
 header[0].appendChild(divHeader);
@@ -160,6 +130,7 @@ let aRedirect = document.createElement('a');
 
 aRedirect.setAttribute('href', "../index.html");
 aRedirect.textContent = "Volver a la pokedex";
+aRedirect.classList.add('h2Style');
 
 divRedirect.classList.add("divRedireccionIndex");
 

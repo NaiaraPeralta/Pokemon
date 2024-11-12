@@ -1,18 +1,10 @@
 let pokemons = pokemon;
 let añadir='';
 let pokemonLocal='';
-let pokemonsAgregado= [];
 if(!JSON.parse(window.localStorage.getItem("pokemons"))){
-    añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));    
+    añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
 }else{
     pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
-}
-
-if(!JSON.parse(window.localStorage.getItem("pokemonsAgregado"))){
-    añadirPokemon = window.localStorage.setItem("pokemonsAgregado", JSON.stringify(pokemonsAgregado));    
-}else{
-    pokemonsAgregado = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
-    console.log(pokemonsAgregado);
 }
 
 
@@ -30,6 +22,7 @@ let nav = document.getElementsByTagName('nav');
 let divHeader = document.createElement('div');
 let h1Header = document.createElement('h1');
 h1Header.textContent = "Pokemon";
+h1Header.classList.add('h1Style');
 
 divHeader.appendChild(h1Header);
 header[0].appendChild(divHeader);
@@ -49,7 +42,7 @@ labelForm.textContent = "Buscar pokemon:  ";
 inputForm.type = 'text';
 inputForm.id = "buscarPokemon";
 inputForm.placeholder = "Encuentra tu pokemon";
-
+labelForm.classList.add('h2Style');
 inputForm.addEventListener('keyup', function(){
     let texto = inputForm.value.toLowerCase();
     let cards = document.getElementsByClassName('divCarta');
@@ -85,7 +78,7 @@ let aRedirect = document.createElement('a');
 
 aRedirect.setAttribute('href', "./pages/agregar.html");
 aRedirect.textContent = "Agregar Pokemon";
-
+aRedirect.classList.add('h2Style');
 divRedirect.classList.add("divRedireccion");
 
 pRedirect.appendChild(aRedirect);
@@ -158,26 +151,22 @@ function crearCarta(pokemon) {
     //Creamos el ID
     let id = document.createElement('p');
     id.textContent = `ID: ${pokemon['id']}`;
+    id.classList.add('text');
     card.appendChild(id);
     //Creamos la imagen y seleccionamos que imagen queremos que nos ponga añadiendo la ruta
     let imagen = document.createElement('img');
-    
     imagen.src= `img/${pokemon['id']}.png`;
-    if( imagen.src= `img/${pokemon['id']}.png`){
-        imagen.classList.add('imagen');
-        card.appendChild(imagen);
-    }
-   
+    imagen.classList.add('imagen');
+    card.appendChild(imagen);
     //Creamos el nombre del pokemon y lo añadimos al div
     let nomPokemon = document.createElement('p');
     nomPokemon.textContent = `Nombre: ${pokemon['nombre']}`;
+    nomPokemon.classList.add('text');
     card.appendChild(nomPokemon);
     //Creamos el tipo de pokemon y lo añadimos dentro del div
     let tipoPokemon = document.createElement('p');
-    if(pokemon['tipos']){
-        tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
-    }
-   
+    tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+    tipoPokemon.classList.add('text');
     card.appendChild(tipoPokemon);
     //Creamos el boton que borrara a los pokemons que queramos
     
@@ -205,14 +194,6 @@ function mostrarCarta() {
         let card = crearCarta(pokemonLocalStorage[i]);
         pokedex.appendChild(card);
     }
-
-    let pokemonAgregado = JSON.parse(localStorage.getItem('pokemonsAgregado'));
-
-    for(let i in pokemonAgregado){
-        let card = crearCarta(pokemonAgregado[i]);
-        pokedex.appendChild(card);
-    }
-
 }
 
 // Llamar a la función para renderizar la Pokédex al cargar la página

@@ -1,5 +1,13 @@
+body{
+    background-image: url('../img/fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    image-rendering: pixelated;
+}
 header{
-    background-color: #e2e2e2;
+    background-color: #79c9e8;
     height: 100px;
     width: 100%;
 }
@@ -10,8 +18,28 @@ header div {
 nav {
     height: 50px;
     width: 100%;
-    background-color: blue;
+    background-color: #b4d8e6;
     margin-bottom: 20px;
+}
+
+.h1Style{
+    color:#ffffff;
+    font-family: 'Pokemon Solid Normal';
+}
+
+.h2Style{
+    color:#ffffff;
+    font-family: system-ui;
+}
+
+.h2StyleAgregar{
+    color:#131b5d;
+    font-family: 'Pokemon Solid Normal';
+}
+
+.datos{
+    color:#131b5d;
+    font-family: system-ui;
 }
 
 .formularioNavegador{
@@ -33,10 +61,10 @@ nav {
 }
 .divRedireccion a {
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 .divRedireccion:hover{
-    background-color: #4b77f7;
+    background-color: #99d1e7;
 }
 
 .divRedireccionIndex{
@@ -53,16 +81,18 @@ nav {
     color: white;
 }
 .divRedireccionIndex:hover{
-    background-color: #4b77f7;
+    background-color: #99d1e7;
 }
 
 footer{
-    background-color: #18237b;
+    background-color: rgb(114, 182, 114, 0.5);
     width:100%;
     height: 250px;
 }
 .divFooter p {
-    color: #888dbe ;
+    color: #000000 ;
+    padding:20px;
+    font-family: system-ui;
 }
 
 .divFooter{
@@ -86,7 +116,7 @@ footer{
     gap: 10px;
 }
 .divCarta{
-    border: 1px solid black;
+    border: 1px;
     border-radius: 10px;
     width: 250px;
     height: 300px;
@@ -96,7 +126,7 @@ footer{
     flex-direction: column;
     margin:auto;
     text-align: center;
-    background-color: #c8d2f2;
+    background-color: rgba(160, 201, 218, 0.5);
 }
 .imagen{
     width: 100px;
@@ -112,6 +142,10 @@ footer{
     border-radius: 5px;
 }
 
+.text{
+    color:#131b5d;
+    font-family: system-ui;
+}
 
 .divFormularioAgregar{
     border: solid 1px black;
