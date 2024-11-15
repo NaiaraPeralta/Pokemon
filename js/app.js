@@ -39,6 +39,7 @@ h1Header.textContent = "Pokemon";
 h1Header.classList.add('h1Style');
 
 divHeader.appendChild(h1Header);
+header[0].appendChild(divScreen);
 header[0].appendChild(divHeader);
 
 // ***************  Nav  *****************************

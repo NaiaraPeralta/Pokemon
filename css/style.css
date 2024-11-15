@@ -181,3 +181,11 @@ footer{
     width: 30px;
     height: 30px; 
 }
+
+.screen{
+    font-size: 10px;
+    width:80px;
+    height: 50px;
+    background-color: white;
+    float: right;
+}
