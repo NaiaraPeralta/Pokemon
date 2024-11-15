@@ -4,7 +4,6 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    image-rendering: pixelated;
 }
 header{
     background-color: #79c9e8;
