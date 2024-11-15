@@ -164,15 +164,14 @@ header[0].appendChild(divHeader);
 // *******************  Nav - agregar.html  *******************
 let divRedirect = document.createElement('div');
 let pRedirect = document.createElement('p');
-let aRedirect = document.createElement('a');
-
-aRedirect.setAttribute('href', "../index.html");
-aRedirect.textContent = "Volver a la pokedex";
-aRedirect.classList.add('h2Style');
+pRedirect.textContent = "Volver a inicio";
+pRedirect.addEventListener('click', function(){
+  history.pushState({ file: "index.html" }, "Pagina principal", "../index.html");
+  window.location.href = "../index.html";
+});
 
 divRedirect.classList.add("divRedireccionIndex");
 
-pRedirect.appendChild(aRedirect);
 divRedirect.appendChild(pRedirect);
 nav[0].appendChild(divRedirect);
 

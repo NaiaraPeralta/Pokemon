@@ -12,9 +12,17 @@ if(!JSON.parse(window.localStorage.getItem("pokemonsAgregado"))){
     añadirPokemon = window.localStorage.setItem("pokemonsAgregado", JSON.stringify(pokemonsAgregado));    
 }else{
     pokemonsAgregado = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
-    console.log(pokemonsAgregado);
 }
 
+//Vamos a agregar el objeto screen y mostrar en la pantalla de index.html 
+let divScreen = document.createElement('div');
+let pWidth = document.createElement('p');
+let pHeigt = document.createElement('p');
+pWidth.textContent = "Ancho: " + screen.width + "px";
+pHeigt.textContent = "Alto: " + screen.height + "px";
+divScreen.appendChild(pWidth);
+divScreen.appendChild(pHeigt);
+divScreen.classList.add('screen');
 
 
 // INDEX
@@ -80,14 +88,16 @@ nav[0].appendChild(divForm);
 // *******************  Nav - agregar.html  *******************
 let divRedirect = document.createElement('div');
 let pRedirect = document.createElement('p');
-let aRedirect = document.createElement('a');
 
-aRedirect.setAttribute('href', "./pages/agregar.html");
-aRedirect.textContent = "Agregar Pokemon";
-aRedirect.classList.add('h2Style');
+//aRedirect.setAttribute('href', "./pages/agregar.html");
+pRedirect.textContent = "Agregar Pokemon";
+pRedirect.addEventListener('click', function(){
+    history.pushState({ file: "agregar.html" }, "Formulario agregar", "./agregar.html");
+    window.location.href = "./pages/agregar.html";
+});
+
 divRedirect.classList.add("divRedireccion");
 
-pRedirect.appendChild(aRedirect);
 divRedirect.appendChild(pRedirect);
 nav[0].appendChild(divRedirect);
 
@@ -135,8 +145,6 @@ function crearCarta(pokemon) {
     let divVer = document.createElement('div');
     divVer.classList = 'divVer';
     let formVer = document.createElement('form');
-    formVer.action = 'pages/verPokemon.html';
-    formVer.method = 'GET';
 
     let hiddenId = document.createElement('input');
     hiddenId.type = "hidden";
@@ -148,6 +156,12 @@ function crearCarta(pokemon) {
     submitVer.type = "submit";
     let imgVer = document.createElement('img');
     imgVer.src = "img/ver.png";
+
+    imgVer.addEventListener('click', function(){
+        history.pushState({ file: "verPokemon.html" }, "Formulario agregar", "./pages/verPokemon.html");
+        window.location.href = "./pages/verPokemon.html?" + pokemon['id'];
+    });
+
     submitVer.appendChild(imgVer);
     formVer.appendChild(submitVer);
 
@@ -176,6 +190,7 @@ function crearCarta(pokemon) {
     let tipoPokemon = document.createElement('p');
     if(pokemon['tipos']){
         tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
+        card.classList.add(pokemon['tipos'][0].toLowerCase());
     }
     
     tipoPokemon.classList.add('text');

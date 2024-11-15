@@ -1,0 +1,47 @@
+.planta{
+    background-color: green;
+}
+
+.agua{
+    background-color: cyan;
+}
+
+.fuego{
+    background-color: red;
+}
+
+.acero{
+    background-color: grey;
+}
+
+.normal{
+    background-color: white;
+}
+
+.bicho{
+    background-color: greenyellow;
+}
+
+.veneno{
+    background-color: purple;
+}
+
+.dragón{
+    background-color: lightskyblue;
+}
+
+.psíquico{
+    background-color: blueviolet;
+}
+
+.eléctrico{
+    background-color: yellow;
+}
+
+.roca{
+    background-color: brown;
+}
+
+.volador{
+    background-color: skyblue;
+}

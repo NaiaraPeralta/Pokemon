@@ -1,4 +1,3 @@
-
 let cadPokemon = window.location.search;
 
 cadPokemon = cadPokemon.split('=');
@@ -6,7 +5,7 @@ cadPokemon = cadPokemon.split('=');
 let idPokemon = cadPokemon[1];
 let pokemonLocal = JSON.parse(window.localStorage.getItem('pokemons'));
 let main = document.getElementsByTagName('main');
-
+let body = document.getElementsByTagName('body');
 /**
  * La funcion comprueba que pokemon ha sido seleccionado y lo retorna para futuras funciones
  * @param {string} id - Pasamos por parametro el id del pokemon seleccionado en el formulario para ver el pokemon
@@ -30,9 +29,10 @@ divTarjeta.classList.add("tarjetaPokemon");
  */
 function crearTarjetaPokemon(pokemon){
     console.log(pokemon);
-        
+    
     //Necesitaremos crear una tabla para almacenar todos los datos del pokemon
     let tablaTarjeta = document.createElement('table');
+    body[0].classList.add(pokemon['tipos'][0].toLowerCase());
     //Primera Fila contendrá el id del pokemon y el nombre -- usaremos 2 celdas
     let filaIdNom = tablaTarjeta.insertRow();
     let celda1 = filaIdNom.insertCell();
@@ -141,13 +141,28 @@ function crearTarjetaPokemon(pokemon){
 
     celdaDatosV1.appendChild(rangoV);
     celdaDatosV1.appendChild(textoV);
+
     //Insertamos tabla dentro de un div
     divTarjeta.appendChild(tablaTarjeta);
 }
 
 crearTarjetaPokemon(comprobarPokemon(idPokemon));
 
+//Crear boton de vuelta al index
+let divVolver = document.createElement('div');
+divVolver.classList.add('divVolver');
+let pVolver = document.createElement('p');
+pVolver.textContent = "Volver al index";
+pVolver.addEventListener('click', function(){
+    history.pushState({ file: "index.html" }, "Pagina principal", "../index.html");
+    window.location.href = "../index.html";
+  });
+
+divVolver.appendChild(pVolver);
+
+main[0].appendChild(divVolver);
 main[0].appendChild(divTarjeta);
+
 
 //lista debil y fuerte
 let divEspecificaciones = document.createElement('div');
