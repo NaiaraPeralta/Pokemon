@@ -1,47 +1,63 @@
 .planta{
-    background-color: green;
+    background-color: rgb(137, 213, 137);
 }
 
 .agua{
-    background-color: cyan;
+    background-color: rgb(147, 200, 244);
 }
 
 .fuego{
-    background-color: red;
+    background-color: rgb(255, 95, 95);
 }
 
 .acero{
-    background-color: grey;
+    background-color: rgb(166, 166, 166);
 }
 
 .normal{
-    background-color: white;
+    background-color: rgb(255, 233, 207);
 }
 
 .bicho{
-    background-color: greenyellow;
+    background-color: rgb(190, 240, 115);
 }
 
 .veneno{
-    background-color: purple;
+    background-color: rgb(219, 120, 214);
 }
 
 .dragón{
-    background-color: lightskyblue;
+    background-color: rgb(189, 135, 250);
 }
 
 .psíquico{
-    background-color: blueviolet;
+    background-color: rgb(237, 90, 141);
 }
 
 .eléctrico{
-    background-color: yellow;
+    background-color: rgb(255, 255, 148);
 }
 
 .roca{
-    background-color: brown;
+    background-color: rgb(128, 138, 171);
 }
 
 .volador{
-    background-color: skyblue;
+    background-color: rgb(175, 223, 243);
+}
+
+.hada{
+    background-color: rgb(255, 210, 218);
+}
+
+.tierra{
+    background-color: rgb(183, 159, 117);
+}
+
+.lucha{
+    background-color: rgb(211, 135, 116);
+}
+
+.hielo{
+    background-color: rgb(169, 255, 255);
 }

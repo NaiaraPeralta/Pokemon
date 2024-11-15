@@ -58,9 +58,10 @@ nav {
 .divRedireccion p {
     margin-left: 15px;;
 }
-.divRedireccion a {
+.divRedireccion p {
     text-decoration: none;
     color: rgb(255, 255, 255);
+    font-family: system-ui;
 }
 .divRedireccion:hover{
     background-color: #99d1e7;
