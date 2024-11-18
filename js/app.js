@@ -197,6 +197,7 @@ function crearCarta(pokemon) {
     let imgVer = document.createElement('img');
     imgVer.src = "img/ver.png";
 
+    //Creamos un evento para que cada vez que hagamos click en la imagen nos lleve a verPokemon
     imgVer.addEventListener('click', function(){
         history.pushState({ file: "verPokemon.html" }, "Formulario agregar", "./pages/verPokemon.html");
         window.location.href = "./pages/verPokemon.html?" + pokemon['id'];
@@ -216,6 +217,7 @@ function crearCarta(pokemon) {
     //Creamos la imagen y seleccionamos que imagen queremos que nos ponga añadiendo la ruta
     let imagen = document.createElement('img');
     imagen.src= `img/${pokemon['id']}.png`;
+    //Hacemos un if para que incluso si no existe una imagen del pokemon nos siga creando la carta
     if( imagen.src= `img/${pokemon['id']}.png`){
         imagen.classList.add('imagen');
         card.appendChild(imagen);
@@ -228,6 +230,8 @@ function crearCarta(pokemon) {
     card.appendChild(nomPokemon);
     //Creamos el tipo de pokemon y lo añadimos dentro del div
     let tipoPokemon = document.createElement('p');
+    //Este if tiene la misma funcion que el de imagen, y es para que incluso si no tenemos un tipo del pokemon 
+    //se nos cree igualmente
     if(pokemon['tipos']){
         tipoPokemon.textContent = `Tipo: ${pokemon['tipos'].join(', ')}`;
         card.classList.add(pokemon['tipos'][0].toLowerCase());
@@ -235,12 +239,14 @@ function crearCarta(pokemon) {
     
     tipoPokemon.classList.add('text');
     card.appendChild(tipoPokemon);
+
     //Creamos el boton que borrara a los pokemons que queramos
-    
     let borrar = document.createElement('a');
     let imgBorrar= document.createElement('img');
     imgBorrar.src= 'img/basura.png';
     borrar.appendChild(imgBorrar);
+    //Creamos un evento para que cada vez que hagamos click al boton borrar nos elimine el pokemon
+    //con la funcion eliminarPokemon que se encuentra más abajo del codigo
     borrar.addEventListener('click', function(){
         eliminarPokemon(parseInt(pokemon['id']));
         card.classList.add('ocularTarjeta');
@@ -255,13 +261,16 @@ function crearCarta(pokemon) {
  * Funcion para mostrar los pokemons
  */
 function mostrarCarta() {
+    //Con el innerHTML lo vaciamos
     pokedex.innerHTML = '';
+    //Pasamos de texto a objeto pokemons y con un for v creando las cartas
     let pokemonLocalStorage = JSON.parse(localStorage.getItem('pokemons'));
     for(let i in pokemonLocalStorage){
         let card = crearCarta(pokemonLocalStorage[i]);
         pokedex.appendChild(card);
     }
 
+    //Pasamos de texto a objeto pokemonsAgregados y con un for vamos creando las cartas
     let pokemonAgregado = JSON.parse(localStorage.getItem('pokemonsAgregado'));
 
     for(let i in pokemonAgregado){
@@ -273,13 +282,20 @@ function mostrarCarta() {
 // Llamar a la función para renderizar la Pokédex al cargar la página
 mostrarCarta();
 
-//Funcion eliminar pokemon
+/**
+ * Funcion para eliminar un pokemon
+ * @param {number} id 
+ */
 function eliminarPokemon(id){
+    //Pasamos de texto a objeto pokemons y pokemonsAgregados
     let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
     let pokemonLocalAgregar = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
+    //Creamos los arrays donde guardaremos los pokemons
     let objPokemon = [];
     let objPokemonAgregar = [];
 
+    //A continuacion hacemos un if para que si el id no es el mismo del pokemon al que queremos eliminar
+    //lo meta en el objeto creado anteriormente, esto lo hacemos tanto con los pokemon tanto con pokemonsAgregado
     for(let i = 0 ; i < pokemonLocal.length ; i++){
         if(parseInt(pokemonLocal[i]['id']) != id){
             objPokemon.push(pokemonLocal[i]);
