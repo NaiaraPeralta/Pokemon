@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //creo la etiqueta form
   let forms = document.getElementsByTagName('form');
   let form = forms[0];
-  //le asigno un id al formulario para que si luego necesitamos llamarlo para cualquier otra fucnion podamos llamarlo
+  //le asigno un id al formulario para que si luego necesitamos llamarlo para cualquier otra funcion podamos llamarlo
   //por el id
   form.id = "formularioPokemon";
   form.method = "get";
@@ -39,14 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   form.appendChild(document.createElement("br"));
   form.appendChild(document.createElement("br"));
 
+  //creo un array con las estadisticasBase
   let estadisticasBase = ["HP", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"];
 
   //recorro el array y creo q el label y el imput para las estadisticas base
   for (let i in estadisticasBase) {
     let labelEB = document.createElement("label");
+    //creo un estilo para los datos 
     labelEB.classList.add('datos');
-    //aqui utilizo las comillas invertidas para q lo de hp , ataque ... se me muestre como texto 
-    //porque si lo pongo con comillas " " se pone como cadena de texto literal y no funciona 
     labelEB.textContent = estadisticasBase[i] + ": ";
     let inputEB = document.createElement("input");
     inputEB.type = "number";
@@ -62,25 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
   form.appendChild(document.createElement("br"));
 
 
-
+  //creo el boton de agregar pokemon 
   let inputboton = document.createElement("input");
   inputboton.type = "submit";
   inputboton.id = "agregar";
   inputboton.value = "Agregar Pokémon";
   form.appendChild(inputboton);
 
+  //Aqui le damos estilo al boton
   divFormAgregar.appendChild(form);
   divFormAgregar.classList.add("divFormularioAgregar");
   main[0].appendChild(divFormAgregar);
 
 
-  /** 
-      // Creo el boton de agregar 
-      let botonAgregar = document.createElement("button");
-      botonAgregar.type = "submit";
-      botonAgregar.textContent = "Agregar Pokémon";
-      form.appendChild(botonAgregar);
-    */
+  
 
 
 });
@@ -92,8 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function recogidaDeDatos() {
   let datosUrl = window.location.search;
+  //aqui separo los datos de la url ?nombre=hoho&HP=2&Ataque=2&Defensa=2&Ataque+Especial=22&Defensa+Especial=2&Velocidad=2 teniendolos asi los separa por la &
+  //para que se nos queden en bloques de el dato y su valor 
   let datos1 = datosUrl.split('&');
   let arrDatos = [];
+  //aqui separamos por = los packs que hemos creado antes  para meterlos en el array de arrDatos
   for (let i = 0; i < datos1.length; i++) {
     arrDatos.push(datos1[i].split('='));
   }
@@ -101,6 +99,7 @@ function recogidaDeDatos() {
   for (let i in arrDatos) {
     datosDefin.push(arrDatos[i][1]);
   }
+  //guardamos en cada varibles su informacion correspondiente que existe en el array de datosDefin
   let nombre = datosDefin[0];
   let hp = datosDefin[1];
   let ataque = datosDefin[2];
@@ -109,6 +108,7 @@ function recogidaDeDatos() {
   let defensaEspecial = datosDefin[5];
   let velocidad = datosDefin[6];
 
+  //si los datos no son nulos ejecuto la funcion agregarPokemon
   if (nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad) {
     agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
   }
@@ -133,13 +133,13 @@ function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspe
   let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
 
   
-
+  // le damos el valor a aux que tiene pokemonLocal como id
   let aux = 0;
   for(let i = 0 ; i < pokemonLocal.length ; i++){
     aux = pokemonLocal[i]['id'];
   }
   console.log(aux);
-
+  //si la longitud es menor o igual a 0 nuestro id vale 151 + la longitud del array de pokemonLocal + 1 , sino es lo que haya en nuestra variable aux + 1 
   if(pokemonLocal.length <= 0){
     id = 151 + pokemonLocal.length + 1;
   } else {
@@ -162,8 +162,7 @@ function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspe
       velocidad: velocidad
     }
   }
-  // agregar pokemon
-
+  // agregar pokemon y lo vuelvo  a subir al localStorage 
   pokemonLocal.push(nuevoPokemon);
   window.localStorage.setItem('pokemonsAgregado', JSON.stringify(pokemonLocal));
   
@@ -174,7 +173,7 @@ function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspe
 let header = document.getElementsByTagName('header');
 let nav = document.getElementsByTagName('nav');
 
-// Por cada etiqueta crearé divs
+// Por cada etiqueta creo divs
 
 let divHeader = document.createElement('div');
 let h1Header = document.createElement('h1');
@@ -192,6 +191,7 @@ header[0].appendChild(divHeader);
 let divRedirect = document.createElement('div');
 let pRedirect = document.createElement('p');
 pRedirect.textContent = "Volver a inicio";
+//utilizo un evente para que cuando hagamos click en volver a inicio nos rediriga al index
 pRedirect.addEventListener('click', function(){
   history.pushState({ file: "index.html" }, "Pagina principal", "../index.html");
   window.location.href = "../index.html";
