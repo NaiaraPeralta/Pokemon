@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   divFormAgregar.appendChild(form);
   divFormAgregar.classList.add("divFormularioAgregar");
   main[0].appendChild(divFormAgregar);
-  main[0].appendChild(forms);
+
 
   /** 
       // Creo el boton de agregar 
