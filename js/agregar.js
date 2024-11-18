@@ -86,7 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
+/**
+ * Mediante el objeto location, utilizando search, recogemos los datos de la url y los transformamos para obtener variables
+ * con los datos recogidos y llamamo a la funcion agregarPokemon pasandole como parametros las variables recogidas
+ */
 function recogidaDeDatos() {
   let datosUrl = window.location.search;
   let datos1 = datosUrl.split('&');
@@ -122,13 +125,24 @@ function recogidaDeDatos() {
 }
 recogidaDeDatos();
 
-
+/**
+ * La funcion se encarga de recoger los datos del item de localStorage pokemonsAgregado y agrega un nuevo pokemon dentro de pokemonsAgregado con los parametros pasados por
+ * el formulario
+ * @param {string} nombre - parametro de tipo string que hace referencia al nombre del pokemon agregado
+ * @param {number} hp - parametro de tipo number que hace referencia al hp del pokemon agregado
+ * @param {number} ataque - parametro de tipo number que hace referencia al ataque del pokemon agregado
+ * @param {number} defensa - parametro de tipo number que hace referencia al defensa del pokemon agregado
+ * @param {number} ataqueEspecial - parametro de tipo number que hace referencia al ataqueEspecial del pokemon agregado
+ * @param {number} defensaEspecial - parametro de tipo number que hace referencia al defensaEspecial del pokemon agregado
+ * @param {number} velocidad - parametro de tipo number que hace referencia a la velocidad del pokemon agregado
+ */
 function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad) {
   let id;
-  let pokemon = JSON.parse(window.localStorage.getItem("pokemons"));
   let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
-  console.log(pokemon.length);
-  id = pokemon.length + pokemonLocal.length + 2;
+
+  id = 151 + pokemonLocal.length + 1;
+
+  
   idAgregado =  id;
 
 
@@ -185,8 +199,6 @@ divRedirect.classList.add("divRedireccionIndex");
 divRedirect.appendChild(pRedirect);
 nav[0].appendChild(divRedirect);
 
-// **************  Main  ****************
-//El main por el momento tiene poco trabajo, hasta que tengamos las cards
 
 // *************  Footer  ****************
 //Primero un footer sencillo

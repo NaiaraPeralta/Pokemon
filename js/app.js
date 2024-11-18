@@ -2,6 +2,8 @@ let pokemons = pokemon;
 let añadir='';
 let pokemonLocal='';
 let pokemonsAgregado= [];
+let añadirPokemon = ''
+
 if(!JSON.parse(window.localStorage.getItem("pokemons"))){
     añadir = window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
 }else{
@@ -14,15 +16,44 @@ if(!JSON.parse(window.localStorage.getItem("pokemonsAgregado"))){
     pokemonsAgregado = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
 }
 
-//Vamos a agregar el objeto screen y mostrar en la pantalla de index.html 
-let divScreen = document.createElement('div');
-let pWidth = document.createElement('p');
-let pHeigt = document.createElement('p');
-pWidth.textContent = "Ancho: " + screen.width + "px";
-pHeigt.textContent = "Alto: " + screen.height + "px";
-divScreen.appendChild(pWidth);
-divScreen.appendChild(pHeigt);
-divScreen.classList.add('screen');
+/**
+ * La funcion se encarga de reiniciar los datos de los items de localStorage
+ */
+function reiniciarDatos(){
+    window.localStorage.removeItem('pokemons');
+    window.localStorage.removeItem('pokemonsAgregado');
+    
+    cargarDatos();
+    console.log('reiniciado');
+}
+/**
+ * La funcion se encarga de volver a cargar los datos vacios
+ */
+function cargarDatos(){
+    location.reload();
+    pokemonsAgregado= [];
+    pokemons = pokemon;
+    window.localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    window.localStorage.setItem("pokemonsAgregado", JSON.stringify(pokemonsAgregado));
+}
+
+/**
+ * Muestra como es el ancho y el largo de la página en pixeles
+ */
+function mostrarScreen(){
+    //Vamos a agregar el objeto screen y mostrar en la pantalla de index.html 
+    let divScreen = document.createElement('div');
+    let pWidth = document.createElement('p');
+    let pHeigt = document.createElement('p');
+    pWidth.textContent = "Ancho: " + screen.width + "px";
+    pHeigt.textContent = "Alto: " + screen.height + "px";
+    divScreen.appendChild(pWidth);
+    divScreen.appendChild(pHeigt);
+    divScreen.classList.add('screen');
+    header[0].appendChild(divScreen);
+}
+
+
 
 
 // INDEX
@@ -39,7 +70,7 @@ h1Header.textContent = "Pokemon";
 h1Header.classList.add('h1Style');
 
 divHeader.appendChild(h1Header);
-header[0].appendChild(divScreen);
+mostrarScreen();
 header[0].appendChild(divHeader);
 
 // ***************  Nav  *****************************
@@ -97,13 +128,20 @@ pRedirect.addEventListener('click', function(){
     window.location.href = "./pages/agregar.html";
 });
 
+let divReiniciar = document.createElement('div');
+let pReiniciar = document.createElement('p');
+pReiniciar.textContent = "Reiniciar datos de pokemon";
+pReiniciar.addEventListener('click', reiniciarDatos);
+
+divReiniciar.classList.add("divReiniciar");
 divRedirect.classList.add("divRedireccion");
 
+
+divReiniciar.appendChild(pReiniciar);
 divRedirect.appendChild(pRedirect);
+nav[0].appendChild(divReiniciar);
 nav[0].appendChild(divRedirect);
 
-// **************  Main  ****************
-//El main por el momento tiene poco trabajo, hasta que tengamos las cards
 
 // *************  Footer  ****************
 //Primero un footer sencillo
@@ -132,6 +170,7 @@ let pokedex = document.createElement('div');
 pokedex.id='pokedex';
 pokedex.classList.add('contenedor');
 main.appendChild(pokedex);
+
 /**
  * Función para crear la carta de un Pokémon
  * @param {Object} pokemon 
@@ -247,6 +286,3 @@ function eliminarPokemon(id){
     window.localStorage.setItem("pokemons", JSON.stringify(objPokemon));
 }
 
-
-
-// AGREGAR

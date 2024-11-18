@@ -50,6 +50,24 @@ nav {
     border-radius: 5px;;
 }
 
+.divReiniciar{
+    float: right;
+    padding-right: 20px;
+    margin-right: 10px;;
+}
+.divReiniciar p {
+    margin-left: 15px;;
+}
+.divReiniciar p {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: system-ui;
+}
+.divReiniciar:hover{
+    background-color: #99d1e7;
+}
+
+
 .divRedireccion{
     float: right;
     padding-right: 20px;
