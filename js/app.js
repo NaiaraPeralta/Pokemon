@@ -276,13 +276,21 @@ mostrarCarta();
 //Funcion eliminar pokemon
 function eliminarPokemon(id){
     let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemons"));
+    let pokemonLocalAgregar = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
     let objPokemon = [];
+    let objPokemonAgregar = [];
 
     for(let i = 0 ; i < pokemonLocal.length ; i++){
         if(parseInt(pokemonLocal[i]['id']) != id){
             objPokemon.push(pokemonLocal[i]);
         }
     }
+    for(let i = 0 ; i < pokemonLocalAgregar.length ; i++){
+        if(parseInt(pokemonLocalAgregar[i]['id']) != id){
+            objPokemonAgregar.push(pokemonLocalAgregar[i]);
+        }
+    }
     window.localStorage.setItem("pokemons", JSON.stringify(objPokemon));
+    window.localStorage.setItem("pokemonsAgregado", JSON.stringify(objPokemonAgregar));
 }
 

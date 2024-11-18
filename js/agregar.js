@@ -109,14 +109,6 @@ function recogidaDeDatos() {
   let defensaEspecial = datosDefin[5];
   let velocidad = datosDefin[6];
 
-  console.log(nombre);
-  console.log(hp);
-  console.log(ataque);
-  console.log(defensa);
-  console.log(ataqueEspecial);
-  console.log(defensaEspecial);
-  console.log(velocidad);
-
   if (nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad) {
     agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
   }
@@ -140,8 +132,19 @@ function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspe
   let id;
   let pokemonLocal = JSON.parse(window.localStorage.getItem("pokemonsAgregado"));
 
-  id = 151 + pokemonLocal.length + 1;
+  
 
+  let aux = 0;
+  for(let i = 0 ; i < pokemonLocal.length ; i++){
+    aux = pokemonLocal[i]['id'];
+  }
+  console.log(aux);
+
+  if(pokemonLocal.length <= 0){
+    id = 151 + pokemonLocal.length + 1;
+  } else {
+    id = aux + 1;
+  }
   
   idAgregado =  id;
 
