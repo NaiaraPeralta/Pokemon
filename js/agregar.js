@@ -85,31 +85,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-let datosUrl = window.location.search;
-let datos1 = datosUrl.split('&');
-let arrDatos = [];
-for (let i = 0; i < datos1.length; i++) {
-  arrDatos.push(datos1[i].split('='));
-}
-let datosDefin = [];
-for (let i in arrDatos) {
-  datosDefin.push(arrDatos[i][1]);
-}
-let nombre = datosDefin[0];
-let hp = datosDefin[1];
-let ataque = datosDefin[2];
-let defensa = datosDefin[3];
-let ataqueEspecial = datosDefin[4];
-let defensaEspecial = datosDefin[5];
-let velocidad = datosDefin[6];
 
-console.log(nombre);
-console.log(hp);
-console.log(ataque);
-console.log(defensa);
-console.log(ataqueEspecial);
-console.log(defensaEspecial);
-console.log(velocidad);
+
+function recogidaDeDatos() {
+  let datosUrl = window.location.search;
+  let datos1 = datosUrl.split('&');
+  let arrDatos = [];
+  for (let i = 0; i < datos1.length; i++) {
+    arrDatos.push(datos1[i].split('='));
+  }
+  let datosDefin = [];
+  for (let i in arrDatos) {
+    datosDefin.push(arrDatos[i][1]);
+  }
+  let nombre = datosDefin[0];
+  let hp = datosDefin[1];
+  let ataque = datosDefin[2];
+  let defensa = datosDefin[3];
+  let ataqueEspecial = datosDefin[4];
+  let defensaEspecial = datosDefin[5];
+  let velocidad = datosDefin[6];
+
+  console.log(nombre);
+  console.log(hp);
+  console.log(ataque);
+  console.log(defensa);
+  console.log(ataqueEspecial);
+  console.log(defensaEspecial);
+  console.log(velocidad);
+
+  if (nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad) {
+    agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
+  }
+  
+  
+}
+recogidaDeDatos();
+
 
 function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad) {
   let id;
@@ -140,9 +152,6 @@ function agregarPokemon(nombre, hp, ataque, defensa, ataqueEspecial, defensaEspe
   
 }
 
-if (nombre && hp && ataque && defensa && ataqueEspecial && defensaEspecial && velocidad) {
-  agregarPokemon(nombre, parseInt(hp), parseInt(ataque), parseInt(defensa), parseInt(ataqueEspecial), parseInt(defensaEspecial), parseInt(velocidad));
-}
 
 // *********************  Header  **********************
 let header = document.getElementsByTagName('header');
